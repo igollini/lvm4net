@@ -14,3 +14,5 @@ Imports:
     igraph
 License: GPL (>= 2)
 LazyData: true
+URL: http://github.com/igollini/lvm4net
+BugReports: http://github.com/igollini/lvm4net/issues
