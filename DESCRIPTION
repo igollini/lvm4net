@@ -4,8 +4,6 @@ Description: Latent variable models for network data using fast inferential
     procedures.
 Version: 0.2
 Authors@R: person(given = "Isabella", family = "Gollini", role = c("aut","cre"), email = "igollini.stats@gmail.com")
-Author: Isabella Gollini
-Maintainer: Isabella Gollini <igollini.stats@gmail.com>
 Depends: 
     R (>= 3.1.1),
     MASS,
