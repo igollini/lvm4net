@@ -90,7 +90,7 @@ lsm <- function(Y, D, sigma = 1, xi = 0, psi2 = 2, Niter = 100, Miniter = 10, to
 				lsm$lsmEZ <- lsm$lsmEZ / apply(lsm$lsmEZ, 2, sd)
 				lsm$lsmVZ <- diag(D)
 
-			} else { # Multidimensional Scaling
+			} else { # Multidimensional Scaling
 				lsm$lsmEZ<-cmdscale(as.dist(1-Y), D)
 				lsm$lsmVZ<-diag(D)
 		}

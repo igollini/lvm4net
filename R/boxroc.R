@@ -95,8 +95,8 @@ boxroc <- function(Y, EZ, xiT, BOXPLOT = FALSE, ROC = FALSE, Lroc = 100, labelsP
 		
 		statbplot[[nd]] <- boxplot(p1mod[[nd]][Y[[nd]] == 0], p1mod[[nd]][Y[[nd]] == 1], 
 					names = c(expression(italic(y[ij])==0), expression(italic(y[ij])==1)), ylim=c(0,max(f0)),
-					main= labelsPlot[nd] ,
-					ylab=expression(italic(p)(italic(y[ij])== paste(1, ' | Model'))), 
+					main = labelsPlot[nd] ,
+					ylab =expression(italic(p)(italic(y[ij])== paste(1, ' | Model'))), 
 					plot = BOXPLOT)$stats
 		
 		if(BOXPLOT) abline(h = exp(xiT[nd]) / (1 + exp(xiT[nd])), col = 'red', lty = 2)

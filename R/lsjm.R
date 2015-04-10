@@ -64,7 +64,7 @@ lsjm<-function(Y, D, sigma = 1, xi = rep(0, length(Y)), psi2 = rep(2, length(Y))
 	N <- nrow(Y[[1]])
 	Ndata <- length(Y)
 	
-	xiT<-xi
+	xiT <- xi
 	psi2T<-psi2
 	
 	lsmVZ <- list()
@@ -80,8 +80,8 @@ lsjm<-function(Y, D, sigma = 1, xi = rep(0, length(Y)), psi2 = rep(2, length(Y))
 			
 			if(D %in% 2:3){ # Fruchterman-Reingold
 				lsmEZ <- lapply(Y, frEZ, d = D)
-			} else { # Multidimensional Scaling
-				lsmEZ<- lapply(Y, function(y) cmdscale(as.dist(1 - y), k = D))
+			} else { # Multidimensional Scaling
+				lsmEZ <- lapply(Y, function(y) cmdscale(as.dist(1 - y), k = D))
 		}
 	
 	}
@@ -95,7 +95,7 @@ lsjm<-function(Y, D, sigma = 1, xi = rep(0, length(Y)), psi2 = rep(2, length(Y))
 		Aezvz <- lsmEZ[[i]] %*% solve(lsmVZ[[i]]) + Aezvz
 		
 		xiT[i] <- glm(c(Y[[i]])~c(as.matrix(dist(lsmEZ[[i]])^2)))$coeff[1]
-		names(xiT[i])<-NULL
+		names(xiT[i]) <- NULL
 	}
 	
 if(D>1){
@@ -106,15 +106,15 @@ if(D>1){
 		VZ <- as.matrix(1 / sum(sapply(lsmVZ, solve)) - (Ndata - 1) / sigma^2)
 	}
 	
-	EZ <- Aezvz%*%VZ	
+	EZ <- Aezvz %*% VZ	
 	
 	############
 	############
 
-	iter<-0
-	dif<-1
-	l<-seq(0,0,length.out=3)
-	ellm<-rep(0,Ndata)
+	iter <- 0
+	dif <- 1
+	l <- seq(0, 0, length.out=3)
+	ellm <- rep(0, Ndata)
 
 	while (iter<Niter & dif>tol)
 	{
@@ -135,8 +135,8 @@ if(D>1){
 	{
 	for(i in 2:Ndata)
  	{	
- 		rotLSM<- rotXtoY(lsmEZ[[i]], lsmEZ[[1]]%*%lsmVZ[[i]])
- 		lsmEZ[[i]]<-rotLSM$X
+ 		rotLSM <- rotXtoY(lsmEZ[[i]], lsmEZ[[1]] %*% lsmVZ[[i]])
+ 		lsmEZ[[i]] <- rotLSM$X
  	}
 	}
 	
@@ -154,7 +154,7 @@ if(D>1){
 		VZ <- as.matrix(1 / sum(sapply(lsmVZ, solve)) - (Ndata - 1) / sigma^2)
 	}
 	
-	EZ<- Aezvz%*%VZ
+	EZ<- Aezvz %*% VZ
 
 	########
 	
@@ -168,7 +168,7 @@ if(D>1){
 	
 	if(iter > preit) dif<- l[3] - l[2]
 		
-	if(dif < -tol) dif <- abs(dif)+1
+	if(dif < -tol) dif <- abs(dif) + 1
 	
 	}
 	

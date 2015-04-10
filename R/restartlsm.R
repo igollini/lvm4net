@@ -15,7 +15,7 @@ restartlsm <- function(N, D, randomZ, Y, psi2){
 				lsm$lsmEZ <- lsm$lsmEZ / apply(lsm$lsmEZ, 2, sd)
 				lsm$lsmVZ <- diag(D)
 
-			} else { # Multidimensional Scaling
+			} else { # Multidimensional Scaling
 				lsm$lsmEZ<-cmdscale(as.dist(1-Y), D)
 				lsm$lsmVZ<-diag(D)
 		}
