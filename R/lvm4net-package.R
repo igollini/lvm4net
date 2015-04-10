@@ -17,6 +17,7 @@
 #' @aliases lvm4net
 #' @import MASS
 #' @import ergm
+#' @import network
 #' @import ellipse
 #' @importFrom igraph layout.fruchterman.reingold graph.adjacency
 #' @docType package
