@@ -27,7 +27,8 @@
 #' N <- 20
 #' Y <- network(N, directed = FALSE)[,]
 #' plotY(Y)
-#' # Store the positions of nodes used to plot Y, in order to redraw the plot using the same positions
+#' # Store the positions of nodes used to plot Y, in order to redraw the plot using 
+#' # the same positions
 #' z <- plotY(Y, verbose = TRUE)
 #' plotY(Y, EZ = z)
 
@@ -76,7 +77,8 @@ plotY <- function(Y, Ndata = NULL, EZ = NULL, VZ = NULL, dimZ = c(1, 2), labels 
 	if(is.null(xlim)) xlim <- range(Z[,1])
 	if(is.null(ylim)) ylim <- range(Z[,2])
 
-	plot(NA, xlim = xlim, ylim = ylim, xlab=expression(z[n1]), ylab=expression(z[n2]), pch = pchplot, ...)
+	plot(NA, xlim = xlim, ylim = ylim, xlab = expression(z[n1]), ylab = expression(z[n2]), 
+       pch = pchplot, ...)
 	
 	if(!is.null(VZ)) 
 	{
@@ -91,7 +93,9 @@ plotY <- function(Y, Ndata = NULL, EZ = NULL, VZ = NULL, dimZ = c(1, 2), labels 
 		for(i in 1:(N-1)){ 
 			for(j in 2:N){ 
 				if(Y[[k]][i,j] == 1)
-					network.arrow(Z[i,1], Z[i,2], Z[j,1], Z[j,2], col = rgb(0, 0, 0, alpha =.2), border = rgb(0, 0, 0, alpha =.2), lwd = lwdLine, arrowhead = arrowhead, curve = curve, ...)		
+					network.arrow(Z[i,1], Z[i,2], Z[j,1], Z[j,2], col = rgb(0, 0, 0, alpha =.2), 
+                        border = rgb(0, 0, 0, alpha =.2), lwd = lwdLine, 
+                        arrowhead = arrowhead, curve = curve, ...)		
 				}	
 			}
 		}

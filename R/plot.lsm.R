@@ -31,7 +31,10 @@
 #' # Plot with 99% CB
 #' plot(modLSM, Y, drawCB = TRUE, LEVEL = .99)
 
-plot.lsm <- function(x, Y, drawCB = FALSE, dimZ = c(1, 2), colPl = 1, colEll = rgb(.6, .6 ,.6 , alpha=.1), LEVEL = .95, pchplot = 20, pchEll = 19, pchPl = 19, cexPl = 1.1, arrowhead = FALSE, curve = NULL, xlim = NULL, ylim = NULL, ...)
+plot.lsm <- function(x, Y, drawCB = FALSE, dimZ = c(1, 2), colPl = 1, 
+                     colEll = rgb(.6, .6 ,.6 , alpha=.1), LEVEL = .95, 
+                     pchplot = 20, pchEll = 19, pchPl = 19, cexPl = 1.1, 
+                     arrowhead = FALSE, curve = NULL, xlim = NULL, ylim = NULL, ...)
 {		
 		stopifnot(inherits(x, 'lsm'))
 		stopifnot(is.adjacency(Y))

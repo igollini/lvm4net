@@ -32,8 +32,10 @@
 #'    Y <- list()
 #'    Y[[1]] <- network(N, directed = FALSE)[,]
 #'    ### create a new view that is similar to the original
+#'    
 #'   for(nd in 2:Ndata){
-#'     Y[[nd]] <- Y[[nd - 1]] - sample(c(-1, 0, 1), N * N, replace = TRUE, prob = c(.05, .85, .1))
+#'     Y[[nd]] <- Y[[nd - 1]] - sample(c(-1, 0, 1), N * N, replace = TRUE, 
+#'    prob = c(.05, .85, .1))
 #'     Y[[nd]] <- 1 * (Y[[nd]]  > 0 )
 #'   diag(Y[[nd]]) <- 0
 #'    }
@@ -47,7 +49,8 @@
 #' plot(modLSJM, Y, drawCB = TRUE)
 #' plot(modLSJM, Y, drawCB = TRUE, plotZtilde = TRUE)
 
-lsjm<-function(Y, D, sigma = 1, xi = rep(0, length(Y)), psi2 = rep(2, length(Y)), Niter = 500, tol = 0.1^2, preit = 20, randomZ = FALSE)
+lsjm<-function(Y, D, sigma = 1, xi = rep(0, length(Y)), psi2 = rep(2, length(Y)), 
+               Niter = 500, tol = 0.1^2, preit = 20, randomZ = FALSE)
 {
 	stopifnot(is.list(Y), sapply(Y, is.adjacency))
 	stopifnot(length(D) == 1, D > 0, D == floor(D))

@@ -30,7 +30,8 @@
 #'    Y[[1]] <- network(N, directed = FALSE)[,]
 #'    ### create a new view that is similar to the original
 #'   for(nd in 2:Ndata){
-#'     Y[[nd]] <- Y[[nd - 1]] - sample(c(-1, 0, 1), N * N, replace = TRUE, prob = c(.05, .85, .1))
+#'     Y[[nd]] <- Y[[nd - 1]] - sample(c(-1, 0, 1), N * N, replace = TRUE, 
+#'     prob = c(.05, .85, .1))
 #'     Y[[nd]] <- 1 * (Y[[nd]]  > 0 )
 #'   diag(Y[[nd]]) <- 0
 #'    }
@@ -44,7 +45,11 @@
 #' plot(modLSJM, Y, drawCB = TRUE)
 #' plot(modLSJM, Y, drawCB = TRUE, plotZtilde = TRUE)
 
-plot.lsjm <- function(x, Y, drawCB = FALSE, dimZ = c(1, 2), plotZtilde = FALSE, colPl =1, colEll = rgb(.6, .6 ,.6 , alpha=.1), LEVEL = .95, pchplot = 20, pchEll = 19, pchPl = 19, cexPl = 1.1,  mainZtilde = NULL, arrowhead = FALSE, curve = NULL, xlim = NULL, ylim = NULL, main = NULL, ...)
+plot.lsjm <- function(x, Y, drawCB = FALSE, dimZ = c(1, 2), plotZtilde = FALSE, colPl = 1, 
+                      colEll = rgb(.6, .6 ,.6 , alpha=.1), LEVEL = .95, pchplot = 20, 
+                      pchEll = 19, pchPl = 19, cexPl = 1.1,  mainZtilde = NULL, 
+                      arrowhead = FALSE, curve = NULL, xlim = NULL, ylim = NULL, 
+                      main = NULL, ...)
 {		
 		stopifnot(inherits(x, 'lsjm'))
 		stopifnot(is.logical(drawCB) & length(drawCB) == 1)

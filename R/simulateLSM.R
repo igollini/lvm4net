@@ -1,12 +1,12 @@
 #' Simulate from LSM model
 #'
-#' Function to  Simulate from LSM model
+#' Function to simulate networks from the LSM model
 #'
 #' @param object object of class \code{'lsm'}
-#' @param Y array containing the adjacency marices
-#' @param nsim number of simulations 
-#' @param seed for simulations
-#' @param directed if the network is directed or not 
+#' @param Y (\code{N} x \code{N}) binary adjacency matrix
+#' @param nsim number of simulations. Default \code{nsim = 100}
+#' @param seed for simulations 
+#' @param directed if the network is directed or not.  Default \code{directed = NULL} 
 #' @export
 #' @examples
 #' 
@@ -16,17 +16,17 @@
 #' modLSM <- lsm(Y, D = 2) 
 #'
 #' Ysim <- simulateLSM(modLSM, Y = Y, nsim = 8)
-#' ## store EZ, to keep the nodes in the same positions and compare the networks
+#' # store EZ, to keep the nodes in the same positions 
+#' # and compare the networks
 #' EZ <- modLSM$lsmEZ
 #' par(mfrow = c(3,3))
-#' plotY(Y, EZ = EZ, main = 'Original Data')
-#' for(i in 1:8) plotY(Ysim[[i]], EZ = EZ, main = paste('Simulation' , i))
+#' plotY(Y, EZ = EZ, main = "Original Data")
+#' for(i in 1:8) plotY(Ysim[[i]], EZ = EZ, main = paste("Simulation" , i))
 #' par(mfrow = c(1,1))
 
-simulateLSM <- function(object, Y, nsim = 100, seed, directed = NULL){
+simulateLSM <- function(object, Y = NULL, nsim = 100, seed, directed = NULL){
 	
 	stopifnot(inherits(object, 'lsm'))
-	stopifnot(is.adjacency(Y))
 	
 	nsim <- as.integer(nsim)
 	stopifnot(nsim > 0)
@@ -37,7 +37,7 @@ simulateLSM <- function(object, Y, nsim = 100, seed, directed = NULL){
 	EZ <- object$lsmEZ
 	VZ <- object$lsmVZ
 	
-	N <- nrow(Y)
+	N <- nrow(EZ)
 	
 	if(is.null(directed)){ 
 			directed <- !all(Y == t(Y))

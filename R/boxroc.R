@@ -1,4 +1,4 @@
-#' Boxplot and Roc Curves
+#' Boxplot and ROC Curves
 #'
 #' Function to display boxplots and ROC curves to show model fit in terms of in-sample link prediction.
 #'
@@ -36,7 +36,9 @@
 #' 
 #' print(bp)
 
-boxroc <- function(Y, EZ, xiT, BOXPLOT = FALSE, ROC = FALSE, Lroc = 100, labelsPlot = NULL, powdist = 2, cexRocLeg = .8, 	colRoc = seq(2, Ndata + 1), ltyRoc = seq(2, Ndata + 1), lwdRoc = 2, ...)
+boxroc <- function(Y, EZ, xiT, BOXPLOT = FALSE, ROC = FALSE, Lroc = 100, labelsPlot = NULL, 
+                   powdist = 2, cexRocLeg = .8, 	colRoc = seq(2, Ndata + 1), 
+                   ltyRoc = seq(2, Ndata + 1), lwdRoc = 2, ...)
 {
 	if(is.matrix(Y)){ 
 		Yo <- Y
