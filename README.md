@@ -10,6 +10,6 @@ they are connected.
 Functions for binary bipartite networks will be added soon.
 
 ### References 
-- Gollini, I., and Murphy, T. B. (to appear), ["Joint Modelling of Multiple Network Views""](http://www.tandfonline.com/doi/abs/10.1080/10618600.2014.978006#.VJGM9GSsW0c), *Journal of Computational and Graphical Statistics*, [arXiv:1301.3759](http://arxiv.org/abs/1301.3759).
+- Gollini, I., and Murphy, T. B. (to appear), ["Joint Modelling of Multiple Network Views"](http://www.tandfonline.com/doi/abs/10.1080/10618600.2014.978006#.VJGM9GSsW0c), *Journal of Computational and Graphical Statistics*, [arXiv:1301.3759](http://arxiv.org/abs/1301.3759).
 
 - Hoff, P., Raftery, A., and Handcock, M. (2002), ["Latent Space Approaches to Social Network Analysis"](http://www.tandfonline.com/doi/abs/10.1198/016214502388618906#.VSglXRPF-e4), *Journal of the American Statistical Association*, 97, 1090--1098.
