@@ -12,8 +12,7 @@
 #' @param tol desired tolerance. Default \code{tol = 0.1^2}
 #' @param preit Preliminary number of iterations default \code{preit = 20}
 #' @param randomZ logical; If \code{randomZ = TRUE} random initialization for the latent positions is used. If \code{randomZ = FALSE} and \code{D} = 2 or 3 the latent positions are initialized using the Fruchterman-Reingold method and multidimensional scaling is used for \code{D} = 1 or \code{D} > 3. Default \code{randomZ = FALSE}
-
-#'  @return List containing:
+#' @return List containing:
 #' \itemize{
 #' \item \code{EZ} (\code{N} x \code{D}) matrix containing the posterior means of the latent positions
 #' \item \code{VZ} (\code{D} x \code{D}) matrix containing the posterior variance of the latent positions

@@ -151,8 +151,13 @@ The LSJM merges the information given by the multiple network views by assuming 
     </tr>
     <tr>
       <th>randomZ</th>
-      <td><p>logical; If <code>randomZ = TRUE</code> random initialization for the latent positions is used. If <code>randomZ = FALSE</code> and <code>D</code> = 2 or 3 the latent positions are initialized using the Fruchterman-Reingold method and multidimensional scaling is used for <code>D</code> = 1 or <code>D</code> &gt; 3. Default <code>randomZ = FALSE</code>
- @return List containing:</p><ul>
+      <td><p>logical; If <code>randomZ = TRUE</code> random initialization for the latent positions is used. If <code>randomZ = FALSE</code> and <code>D</code> = 2 or 3 the latent positions are initialized using the Fruchterman-Reingold method and multidimensional scaling is used for <code>D</code> = 1 or <code>D</code> &gt; 3. Default <code>randomZ = FALSE</code></p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>List containing:</p><ul>
 <li><p><code>EZ</code> (<code>N</code> x <code>D</code>) matrix containing the posterior means of the latent positions</p></li>
 <li><p><code>VZ</code> (<code>D</code> x <code>D</code>) matrix containing the posterior variance of the latent positions</p></li>
 <li><p><code>lsmEZ</code> list contatining a (<code>N</code> x <code>D</code>) matrix for each network view containing the posterior means of the latent positions under each model in the latent space.</p></li>
@@ -160,9 +165,8 @@ The LSJM merges the information given by the multiple network views by assuming 
 <li><p><code>xiT</code> vector of means of the posterior distributions of \(\alpha\)</p></li>
 <li><p><code>psi2T</code> vector of variances of the posterior distributions of \(\alpha\)</p></li>
 <li><p><code>Ell</code> expected log-likelihood</p></li>
-</ul></td>
-    </tr>
-    </table>
+</ul>
+
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -196,6 +200,8 @@ The LSJM merges the information given by the multiple network views by assuming 
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
+      <li><a href="#value">Value</a></li>
+
       <li><a href="#references">References</a></li>
       
       <li><a href="#examples">Examples</a></li>

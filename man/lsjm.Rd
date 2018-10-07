@@ -25,8 +25,10 @@ lsjm(Y, D, sigma = 1, xi = rep(0, length(Y)), psi2 = rep(2,
 
 \item{preit}{Preliminary number of iterations default \code{preit = 20}}
 
-\item{randomZ}{logical; If \code{randomZ = TRUE} random initialization for the latent positions is used. If \code{randomZ = FALSE} and \code{D} = 2 or 3 the latent positions are initialized using the Fruchterman-Reingold method and multidimensional scaling is used for \code{D} = 1 or \code{D} > 3. Default \code{randomZ = FALSE}
- @return List containing:
+\item{randomZ}{logical; If \code{randomZ = TRUE} random initialization for the latent positions is used. If \code{randomZ = FALSE} and \code{D} = 2 or 3 the latent positions are initialized using the Fruchterman-Reingold method and multidimensional scaling is used for \code{D} = 1 or \code{D} > 3. Default \code{randomZ = FALSE}}
+}
+\value{
+List containing:
 \itemize{
 \item \code{EZ} (\code{N} x \code{D}) matrix containing the posterior means of the latent positions
 \item \code{VZ} (\code{D} x \code{D}) matrix containing the posterior variance of the latent positions
@@ -35,7 +37,7 @@ lsjm(Y, D, sigma = 1, xi = rep(0, length(Y)), psi2 = rep(2,
 \item \code{xiT} vector of means of the posterior distributions of \eqn{\alpha}
 \item \code{psi2T} vector of variances of the posterior distributions of \eqn{\alpha}
 \item \code{Ell} expected log-likelihood
-}}
+}
 }
 \description{
 Function to joint modelling of multiple network views using the Latent Space Jont Model (LSJM) Gollini and Murphy (2016). 
