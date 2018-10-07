@@ -138,8 +138,8 @@ goflsm <- function(object, Y, Ysim = NULL, nsim = 100, seed, directed = NULL, st
 		
 		if( 'esp' %in% GOFstats){
 		
-		GOFmat <- sapply(Ysim, function(y) summary.statistics(y ~ esp(0:(N-1)), directed = directed))
-		GOFmat <- cbind(GOFmat, summary.statistics(Y ~ esp(0:(N-1)), directed = directed))  / ( 2 - directed)
+		GOFmat <- sapply(Ysim, function(y) summary_formula(y ~ esp(0:(N-1)), directed = directed))
+		GOFmat <- cbind(GOFmat, summary_formula(Y ~ esp(0:(N-1)), directed = directed))  / ( 2 - directed)
 		rownames(GOFmat) <- seq(0, N-1)
 		
 		SimStats[['esp']] <- GOFmat[!(rowSums(GOFmat) == 0),]
@@ -162,8 +162,8 @@ goflsm <- function(object, Y, Ysim = NULL, nsim = 100, seed, directed = NULL, st
 		
 		if( 'dsp' %in% GOFstats){
 		
-		GOFmat <- sapply(Ysim, function(y) summary.statistics(y ~ dsp(0:(N-1)), directed = directed))
-		GOFmat <- cbind(GOFmat, summary.statistics(Y ~ dsp(0:(N-1)), directed = directed)) / (2 - directed)
+		GOFmat <- sapply(Ysim, function(y) summary_formula(y ~ dsp(0:(N-1)), directed = directed))
+		GOFmat <- cbind(GOFmat, summary_formula(Y ~ dsp(0:(N-1)), directed = directed)) / (2 - directed)
 		rownames(GOFmat) <- seq(0, N-1)
 		
 		SimStats[['dsp']] <- GOFmat[!(rowSums(GOFmat) == 0), ]
@@ -188,19 +188,19 @@ goflsm <- function(object, Y, Ysim = NULL, nsim = 100, seed, directed = NULL, st
 
         if(directed) {
         	
-        	 GOFmat <- sapply(Ysim, function(y) summary.statistics(y ~triadcensus(0:15), directed = directed))
-             GOFmat <- cbind(GOFmat, summary.statistics(Y ~ triadcensus(0:15), directed = directed))    
+        	 GOFmat <- sapply(Ysim, function(y) summary_formula(y ~triadcensus(0:15), directed = directed))
+             GOFmat <- cbind(GOFmat, summary_formula(Y ~ triadcensus(0:15), directed = directed))    
              rownames(GOFmat) <- c("003", "012", "102", "021D", "021U", "021C", "111D", 
              "111U", "030T", "030C",  "201", "120D", "120U", "120C", "210", "300")    
         } else {
         	
-             GOFmat <- sapply(Ysim, function(y) summary.statistics(y ~triadcensus(c(0,2,10,15)), directed = directed))   
-             GOFmat <- cbind(GOFmat, summary.statistics(Y ~ triadcensus(c(0,2,10,15)), directed = directed))    
+             GOFmat <- sapply(Ysim, function(y) summary_formula(y ~triadcensus(c(0,2,10,15)), directed = directed))   
+             GOFmat <- cbind(GOFmat, summary_formula(Y ~ triadcensus(c(0,2,10,15)), directed = directed))    
              rownames(GOFmat) <- c("0", "1", "2", "3")  
         
         }
 
-        SimStats[['triadcensus']] <- GOFmat#[,!(colSums(GOFmat) == 0)]
+        SimStats[['triadcensus']] <- GOFmat
         
         obs.model <-SimStats[['triadcensus']][, nsim + 1]
 		sim.model <- SimStats[['triadcensus']][, -(nsim + 1)]

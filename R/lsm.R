@@ -2,7 +2,7 @@
 #'
 #' Latent space models (LSM) are a well known family of latent variable models for network data introduced by Hoff et al. (2002) under the basic assumption that each node has an unknown position in a D-dimensional Euclidean latent space: generally the smaller the distance between two nodes in the latent space, the greater the probability of them being connected. Unfortunately, the posterior distribution of the LSM cannot be computed analytically. For this reason we propose a variational inferential approach which proves to be less computationally intensive than the MCMC procedure proposed in Hoff et al. (2002) (implemented in the \code{latentnet} package) and can therefore easily handle large networks.
 #' Salter-Townshend and Murphy (2013) applied variational methods to fit the LSM with the Euclidean distance in the \code{VBLPCM} package.
-#' In this package, a distance model with squared Euclidean distance is used. We follow the notation of Gollini and Murphy (2014).
+#' In this package, a distance model with squared Euclidean distance is used. We follow the notation of Gollini and Murphy (2016).
 #'
 #' @param Y (\code{N} x \code{N}) binary adjacency matrix
 #' @param D integer dimension of the latent space
@@ -24,7 +24,7 @@
 #' }
 
 #' @seealso \code{\link{plot.lsm}}
-#' @references Gollini, I., and Murphy, T. B. (2014), "Joint Modelling of Multiple Network Views", Journal of Computational and Graphical Statistics \url{http://arxiv.org/abs/1301.3759}.
+#' @references Gollini, I., and Murphy, T. B. (2016), 'Joint Modelling of Multiple Network Views', Journal of Computational and Graphical Statistics, 25(1), 246-265 \url{http://arxiv.org/abs/1301.3759}.
 #' @references Hoff, P., Raftery, A., and Handcock, M. (2002), "Latent Space Approaches to Social Network Analysis", Journal of the American Statistical Association, 97, 1090--1098.
 #' @export
 #' @examples
@@ -97,7 +97,7 @@ lsm <- function(Y, D, sigma = 1, xi = 0, psi2 = 2, Niter = 100, Miniter = 10, to
 	
 	}
 	
-	lsm$xiT <- glm(c(Y)~c(as.matrix(dist(lsm$lsmEZ)^2)))$coeff[1]
+	lsm$xiT <- glm(c(Y)~c(as.matrix(dist(lsm$lsmEZ)^2)))$coefficients[1]
 	names(lsm$xiT) <- NULL
 	lsm$psi2T <- psi2
 	

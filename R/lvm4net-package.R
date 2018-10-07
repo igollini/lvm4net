@@ -5,12 +5,12 @@
 #' variational inference approach.
 #' Latent space models for binary networks: the function \code{\link{lsm}} implements the latent space model (LSM) introduced by  Hoff et al. (2002) using a variational inference and squared Euclidian distance; the function
 #' \code{\link{lsjm}} implements latent space joint model (LSJM) for multiplex networks introduced by
-#' Gollini and Murphy (2014).
+#' Gollini and Murphy (2016).
 #' These models assume that each node of a network has a latent position
 #' in a latent space: the closer two nodes are in the latent space, the more likely
 #' they are connected.
 #' Functions for binary bipartite networks will be added soon.
-#' @references Gollini, I., and Murphy, T. B. (2014), "Joint Modelling of Multiple Network Views", Journal of Computational and Graphical Statistics \url{http://arxiv.org/abs/1301.3759}.
+#' @references Gollini, I., and Murphy, T. B. (2016), 'Joint Modelling of Multiple Network Views', Journal of Computational and Graphical Statistics, 25(1), 246-265 \url{http://arxiv.org/abs/1301.3759}.
 #' @references Hoff, P., Raftery, A., and Handcock, M. (2002), "Latent Space Approaches to Social Network Analysis", Journal of the American Statistical Association, 97, 1090--1098.
 #'
 #' @name lvm4net-package
@@ -18,7 +18,11 @@
 #' @import MASS
 #' @import ergm
 #' @import network
-#' @import ellipse
+#' @importFrom stats as.dist cmdscale dist glm quantile rbinom rnorm sd
+#' @importFrom utils combn
+#' @importFrom graphics abline boxplot legend lines matlines matplot matpoints mtext par plot points polygon text
+#' @importFrom grDevices rgb
 #' @importFrom igraph layout.fruchterman.reingold graph.adjacency
+#' @importFrom ellipse ellipse
 #' @docType package
 NULL

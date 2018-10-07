@@ -13,7 +13,7 @@
 #' \item \code{PPIphy} Binary adjacency matrix containing physical interactions between 67 proteins.
 #' }
 #' 
-#' @references Gollini, I., and Murphy, T. B. (2014), "Joint Modelling of Multiple Network Views", Journal of Computational and Graphical Statistics \url{http://arxiv.org/abs/1301.3759}.
+#' @references Gollini, I., and Murphy, T. B. (2016), 'Joint Modelling of Multiple Network Views', Journal of Computational and Graphical Statistics, 25(1), 246-265 \url{http://arxiv.org/abs/1301.3759}.
 #' @docType data
 #' @keywords datasets
 #' @seealso \code{\link{PPIgen}}, \code{\link{PPIphy}}

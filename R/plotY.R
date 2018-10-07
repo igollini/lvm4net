@@ -84,8 +84,8 @@ plotY <- function(Y, Ndata = NULL, EZ = NULL, VZ = NULL, dimZ = c(1, 2), labels 
 	{
 		for(n in 1:N)
 		{
-			coEl<-ellipse(VZ,centre = Z[n,],level=LEVEL,pch=pchEll)
-			polygon(coEl[,1], coEl[,2], col = colEll,border=colEll)
+			coEl<-ellipse::ellipse(VZ,centre = Z[n,],level=LEVEL,pch=pchEll)
+			polygon(coEl[,1], coEl[,2], col = colEll, border=colEll)
 		}
 	}
 

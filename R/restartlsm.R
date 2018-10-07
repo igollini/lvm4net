@@ -22,7 +22,7 @@ restartlsm <- function(N, D, randomZ, Y, psi2){
 	
 	}
 	
-	lsm$xiT <- glm(c(Y)~c(as.matrix(dist(lsm$lsmEZ)^2)))$coeff[1]
+	lsm$xiT <- glm(c(Y)~c(as.matrix(dist(lsm$lsmEZ)^2)))$coefficients[1]
 	names(lsm$xiT) <- NULL
 	lsm$psi2T <- psi2
 	

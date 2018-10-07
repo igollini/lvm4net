@@ -18,7 +18,7 @@
 #' @return The area under the ROC curve (AUC) and the selected plots. The closer the AUC takes values to 1 the better the fit.
 #' @seealso \code{\link{lsm}}, \code{\link{lsjm}}
 
-#' @references Gollini, I., and Murphy, T. B. (2014), "Joint Modelling of Multiple Network Views", Journal of Computational and Graphical Statistics \url{http://arxiv.org/abs/1301.3759}.
+#' @references Gollini, I., and Murphy, T. B. (2016), 'Joint Modelling of Multiple Network Views', Journal of Computational and Graphical Statistics, 25(1), 246-265 \url{http://arxiv.org/abs/1301.3759}.
 #' @export
 
 #' @examples
@@ -125,7 +125,7 @@ boxroc <- function(Y, EZ, xiT, BOXPLOT = FALSE, ROC = FALSE, Lroc = 100, labelsP
 		
 		s1YN <- sapply(Y1, sum) 
 	
-		for(l in seq(0, 1, length = Lroc))
+		for(l in seq(0, 1, length.out = Lroc))
 		{
 			i<-i+1
 			

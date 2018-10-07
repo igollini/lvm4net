@@ -2,17 +2,23 @@ Package: lvm4net
 Title: Latent Variable Models for Networks
 Description: Latent variable models for network data using fast inferential
     procedures.
-Version: 0.2
+Version: 0.2.1
 Authors@R: person(given = "Isabella", family = "Gollini", role = c("aut","cre"), email = "igollini.stats@gmail.com")
 Depends: 
     R (>= 3.1.1),
     MASS,
     ergm,
-    network,
-    ellipse
-Imports: 
-    igraph
+    network
+Imports:
+    igraph,
+    grDevices,
+    graphics,
+    ellipse,
+    stats,
+    utils
 License: GPL (>= 2)
 LazyData: true
 URL: http://github.com/igollini/lvm4net
 BugReports: http://github.com/igollini/lvm4net/issues
+Encoding: UTF-8
+RoxygenNote: 6.1.0

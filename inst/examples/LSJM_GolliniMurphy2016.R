@@ -1,12 +1,12 @@
 ####
 ## This code accompany the paper
-## Gollini I., and Murphy T.B. (2014)
-## " Joint Modelling of Multiple Network Views "
-## Journal of Computational and Graphical Statistics
+## Gollini I., and Murphy T.B. (2016)
+## " Joint Modelling of Multiple Network Views " 
+## Journal of Computational and Graphical Statistics 25(1), 246-265
 ## arXiv:1301.3759
 ####
-## author: Gollini I., <isabella.gollini@bristol.ac.uk>
-## date: Sept 26th 2014
+## author: Gollini I., <isabella.gollini@ucd.ie>
+## date: last update of this code October 7th 2018
 
 library(lvm4net)
 
@@ -48,9 +48,9 @@ modLSJM123 <- lsjm(Y123, D) # It takes ~ 40 seconds
 
 Z123 <- modLSJM123$EZ
 
-Z1 <- rotXtoY(modLSM1$lsmEZ, Z123)$X
-Z2 <- rotXtoY(modLSM2$lsmEZ, Z123)$X
-Z3 <- rotXtoY(modLSM3$lsmEZ, Z123)$X
+Z1 <- rotXtoY(modLSM1$lsmEZ, Z123)$Xrot
+Z2 <- rotXtoY(modLSM2$lsmEZ, Z123)$Xrot
+Z3 <- rotXtoY(modLSM3$lsmEZ, Z123)$Xrot
 
 XYlimb <- range(Z123, Z1, Z2, Z3)
 namesb <- paste('Network ', 1:3, sep ='')
@@ -74,7 +74,7 @@ Zlsm[[3]] <- Z3
 
 bpbLSM <- boxroc(Y123, 
 	EZ = Zlsm,
-	xi = c(modLSM1$xiT, modLSM2$xiT, modLSM3$xiT), 
+	xiT = c(modLSM1$xiT, modLSM2$xiT, modLSM3$xiT), 
 	Lroc = 150, 
 	ROC = TRUE, 
 	BOXPLOT = TRUE,
@@ -91,7 +91,7 @@ plot(modLSJM123, Y123, drawCB = TRUE, colPl = colPl, main = 'Multiple networks')
 	
 bpbLSJM <- boxroc(Y123, 
 	EZ = modLSJM123$lsmEZ,	
-	xi = modLSJM123$xiT, 
+	xiT = modLSJM123$xiT, 
 	Lroc = 150, 
 	ROC = TRUE, 
 	BOXPLOT = TRUE,
@@ -128,15 +128,15 @@ modLSMp <- lsm(Yp, D)
 ########## LSJM ##########
 ########################
 
-modLSJMgp <- lsjm(Ygp, D) # It takes ~ 2 minutes
+modLSJMgp <- lsjm(Ygp, D) # It takes ~ 45 seconds
 
 ########################
 #######match rotations #######
 ########################
 Zgp <- modLSJMgp$EZ
 
-Zg <- rotXtoY(modLSMg$lsmEZ, Zgp)$X
-Zp <- rotXtoY(modLSMp$lsmEZ, Zgp)$X
+Zg <- rotXtoY(modLSMg$lsmEZ, Zgp)$Xrot
+Zp <- rotXtoY(modLSMp$lsmEZ, Zgp)$Xrot
 
 XYlima <- range(Zgp, Zg, Zp)
 namesa <- c('Genetic Interactions', 'Physical Interactions')
@@ -229,8 +229,8 @@ timings[3] <- system.time(eucl2var <- lsm(Yg2, D) )[[3]]
 ########################
 
 Z <- eucl2var$lsmEZ
-Zm <- rotXtoY(euclmcmc$mkl$Z,Z)$X
-Zv <- rotXtoY(euclvar$V_z,Z)$X
+Zm <- rotXtoY(euclmcmc$mkl$Z,Z)$Xrot
+Zv <- rotXtoY(euclvar$V_z,Z)$Xrot
 
 N <- nrow(Yg2)
 Att<- rainbow(N,alpha=.8)

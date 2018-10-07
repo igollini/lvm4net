@@ -1,6 +1,6 @@
 #' Latent Space Joint Model
 #'
-#' Function to joint modelling of multiple network views using the Latent Space Jont Model (LSJM) Gollini and Murphy (2014). 
+#' Function to joint modelling of multiple network views using the Latent Space Jont Model (LSJM) Gollini and Murphy (2016). 
 #' The LSJM merges the information given by the multiple network views by assuming that the probability of a node being connected with other nodes in each view is explained by a unique latent variable.
 #'
 #' @param Y list containing a (\code{N} x \code{N}) binary adjacency matrix for each network view.
@@ -23,7 +23,7 @@
 #' \item \code{psi2T} vector of variances of the posterior distributions of \eqn{\alpha}
 #' \item \code{Ell} expected log-likelihood
 #' }
-#' @references Gollini, I., and Murphy, T. B. (2014), "Joint Modelling of Multiple Network Views", Journal of Computational and Graphical Statistics \url{http://arxiv.org/abs/1301.3759}.
+#' @references Gollini, I., and Murphy, T. B. (2016), 'Joint Modelling of Multiple Network Views', Journal of Computational and Graphical Statistics, 25(1), 246-265 \url{http://arxiv.org/abs/1301.3759}.
 #' @export
 #' @examples
 #'## Simulate Undirected Network
@@ -94,7 +94,7 @@ lsjm<-function(Y, D, sigma = 1, xi = rep(0, length(Y)), psi2 = rep(2, length(Y))
 	{		
 		Aezvz <- lsmEZ[[i]] %*% solve(lsmVZ[[i]]) + Aezvz
 		
-		xiT[i] <- glm(c(Y[[i]])~c(as.matrix(dist(lsmEZ[[i]])^2)))$coeff[1]
+		xiT[i] <- glm(c(Y[[i]])~c(as.matrix(dist(lsmEZ[[i]])^2)))$coefficients[1]
 		names(xiT[i]) <- NULL
 	}
 	
@@ -136,7 +136,7 @@ if(D>1){
 	for(i in 2:Ndata)
  	{	
  		rotLSM <- rotXtoY(lsmEZ[[i]], lsmEZ[[1]] %*% lsmVZ[[i]])
- 		lsmEZ[[i]] <- rotLSM$X
+ 		lsmEZ[[i]] <- rotLSM$Xrot
  	}
 	}
 	
