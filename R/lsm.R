@@ -122,7 +122,7 @@ lsm <- function(Y, D, sigma = 1, xi = 0, psi2 = 2, Niter = 100, Miniter = 10, to
 		
 		SI4SigmaT <- solve(diag(D) + 4 * lsm$lsmVZ)
 
-		if(det(SI4SigmaT) < 0 & ntry < maxtry) {
+		if((is.nan(det(SI4SigmaT)) | det(SI4SigmaT) < 0) & ntry < maxtry) {
 			
 			lsm <- restartlsm(N, D, randomZ, Y, psi2)
 			
