@@ -20,4 +20,4 @@
 #' @format Two binary adjacency matrices
 #' @source \url{http://thebiogrid.org/}
 #' @name PPInet
-"PPInet"
+NULL

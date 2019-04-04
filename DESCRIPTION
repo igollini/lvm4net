@@ -21,4 +21,4 @@ LazyData: true
 URL: http://github.com/igollini/lvm4net
 BugReports: http://github.com/igollini/lvm4net/issues
 Encoding: UTF-8
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

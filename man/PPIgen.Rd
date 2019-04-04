@@ -5,6 +5,9 @@
 \alias{PPIgen}
 \title{PPI genetic interactions}
 \format{Binary adjacency matrix}
+\usage{
+PPIgen
+}
 \description{
 The dataset contains a network formed by genetic protein-protein
 interactions (PPI) between 67 Saccharomyces cerevisiae proteins.

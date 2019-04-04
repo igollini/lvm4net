@@ -5,6 +5,9 @@
 \alias{PPIphy}
 \title{PPI physical interactions}
 \format{Binary adjacency matrix}
+\usage{
+PPIphy
+}
 \description{
 The dataset contains a network formed by physical protein-protein
 interactions (PPI) between 67 Saccharomyces cerevisiae proteins.
