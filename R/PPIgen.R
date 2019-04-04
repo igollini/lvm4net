@@ -14,4 +14,4 @@
 #' @keywords datasets
 #' @format Binary adjacency matrix
 #' @name PPIgen
-NULL
+"PPIgen"

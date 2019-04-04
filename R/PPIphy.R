@@ -14,5 +14,5 @@
 #' @keywords datasets
 #' @format Binary adjacency matrix
 #' @name PPIphy
-NULL
+"PPIphy"
 
