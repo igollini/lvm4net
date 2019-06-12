@@ -1,0 +1,175 @@
+---
+title: "MLTA - Code for Gollini, I. (in press) - *A mixture model approach for clustering bipartite networks* "
+author: "Isabella Gollini"
+date: "12/06/2019"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MLTA - Code for Gollini, I. (in press) - A mixture model approach for clustering bipartite networks}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+This code accompany the paper Gollini, I. (in press) "A mixture model approach for clustering bipartite networks", Challenges in Social Network Research Volume in the *Lecture Notes in Social Networks* (LNSN - Series of Springer). Preprint: [arXiv:1905.02659](http://arxiv.org/abs/1905.02659).
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r}
+set.seed(123)
+```
+
+Load the `noordin` dataset which is available in the `manet` package.
+
+```{r}
+data(noordin, package = "manet")
+```
+
+Load the `lvm4net` package and set the incidence matrix in the correct format, and give names to the sender nodes.
+
+```{r}
+library(lvm4net)
+X <- as.matrix(noordin)
+namesX <- paste('V', seq(1, nrow(X)))
+```
+
+Heatmap of the data:
+
+```{r}
+heatmap(
+  X,
+  Rowv = NA,
+  Colv = NA,
+  col = grey(c(0.95, 0.0)),
+  scale = "none",
+  margins = c(3, 3),
+  xlab = "Event",
+  ylab = "Terrorist"
+  )
+```
+
+We want to fit the model on a range of groups `G`, from 2 to 4 and the latent continuous latent variable takes value `D` from 0 to 3.
+
+```{r}
+G <- 2:4 # is the number of groups
+D <- 0:3 # is the dimension of the latent variable
+```
+
+Fit the `mlta`
+
+```{r}
+system.time(
+  mod.mlta <- mlta(X, G = G, D = D, wfix = FALSE) # It takes ~ 2 minutes with 3 starts
+)
+```
+
+
+
+```{r}
+system.time(
+  mod.mlta.wfix <- mlta(X, G = G, D = 1:3, wfix = TRUE) 
+  )# It takes ~ 2 minutes with 3 starts
+```
+
+```{r}
+mod.mlta$BIC$`Table of BIC Results`
+mod.mlta.wfix$BIC$`Table of BIC Results`
+```
+
+According to the BIC the best model selected is has two groups (`G = 2`)  and a one dimensional continuous latent variable (`D = 1`) and common slope parameters across groups (`wfix = TRUE`).
+
+```{r}
+res <- mod.mlta.wfix[[1]]
+```
+
+```{r}
+plot(c(res$w), xlab = "Event", ylab = "w", pch = 19)
+abline(h = 0)
+```
+
+```{r}
+
+par(mfrow = c(1, 2))
+
+plot(c(res$b[1,]), xlab = "Event", ylab = "b", pch = 19, main = "Group 1")
+abline(h = 0)
+
+plot(c(res$b[2,]), xlab = "Event", ylab = "b", pch = 19, main = "Group 2")
+abline(h = 0)
+
+
+```
+
+
+Plot the probability of each sender node to belong to group 1.
+
+```{r}
+plot(res$z[,1], pch = 19, 
+  xlab = "Sender node",
+  ylab = "Probability to belong to group 1")
+abline(h = 0.5, col = "red")
+```
+
+Find and plot the probability that the median sender node in group *g* has a link with receiver node *r*.
+
+```{r}
+pig0 <- 1 / ( 1 + exp(-res$b))
+
+matplot(t(pig0), type = "l", 
+  ylim = c(0, 1), ylab = expression(paste(pi[rg](0))),
+  xlab = "Receiver node (r)", xaxt = "n",
+  main = "Probability that the median sender node in group g\n has a link with receiver node r")
+axis(1, at = 1:ncol(X))
+legend("topright", paste("Group", 1:2, sep = " "), col = 1:2, lty = 1:2)
+
+```
+
+We can calculate the log-lift for the best model selected.
+
+```{r}
+loglift <- log(lift(res, pdGH = 21))
+```
+
+```{r}
+
+heatmap(
+  loglift[,,1],
+  Rowv = NA,
+  Colv = NA,
+  col = colorspace::diverge_hsv(20),
+  breaks = seq(-10, 10, by = 1),
+  revC = TRUE,
+  scale = "none",
+  xlab = "Event",
+  ylab = "Event",
+  main = "Log-Lift for Group 1"
+  )
+
+heatmap(
+  loglift[,,2],
+  Rowv = NA,
+  Colv = NA,
+  col = colorspace::diverge_hsv(20),
+  breaks = seq(-10, 10, by = 1),
+  revC = TRUE,
+  scale = "none",
+  xlab = "Event",
+  ylab = "Event",
+  main = "Log-Lift for Group 2"
+  )
+```
+
+
+### Extra code:
+
+When `D = 0` the `mlta` reduces to the latent class analysis that can be fitted by using `lca`
+
+```{r}
+mod.lca <- lca(X, G = 2:4)
+```
+
+When there are no groups (`G = 1`) and `D > 0` the `mlta` reduces to the latent trait analysis that can be fitted by using `lta`
+
+```{r}
+mod.lta <- lta(X, D = 1:3)
+```

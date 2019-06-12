@@ -34,14 +34,7 @@
 
 <meta property="og:description" content="lvm4net provides a range of tools for latent variable models for
 network data. Most of the models are implemented using a fast
-variational inference approach.
-Latent space models for binary networks: the function lsm implements the latent space model (LSM) introduced by  Hoff et al. (2002) using a variational inference and squared Euclidian distance; the function
-lsjm implements latent space joint model (LSJM) for multiplex networks introduced by
-Gollini and Murphy (2016).
-These models assume that each node of a network has a latent position
-in a latent space: the closer two nodes are in the latent space, the more likely
-they are connected.
-Functions for binary bipartite networks will be added soon." />
+variational inference approach." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -72,7 +65,7 @@ Functions for binary bipartite networks will be added soon." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">lvm4net</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3</span>
       </span>
     </div>
 
@@ -86,6 +79,18 @@ Functions for binary bipartite networks will be added soon." />
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/MLTA_Gollini_2019.html">MLTA - Code for Gollini, I. (in press) - *A mixture model approach for clustering bipartite networks* </a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -117,21 +122,26 @@ Functions for binary bipartite networks will be added soon." />
     
     <p><code>lvm4net</code> provides a range of tools for latent variable models for
 network data. Most of the models are implemented using a fast
-variational inference approach.
-Latent space models for binary networks: the function <code><a href='lsm.html'>lsm</a></code> implements the latent space model (LSM) introduced by  Hoff et al. (2002) using a variational inference and squared Euclidian distance; the function
-<code><a href='lsjm.html'>lsjm</a></code> implements latent space joint model (LSJM) for multiplex networks introduced by
-Gollini and Murphy (2016).
-These models assume that each node of a network has a latent position
-in a latent space: the closer two nodes are in the latent space, the more likely
-they are connected.
-Functions for binary bipartite networks will be added soon.</p>
+variational inference approach.</p>
     
     </div>
 
         
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Latent space models for one-mode binary networks: the function <code><a href='lsm.html'>lsm</a></code> implements the latent space model (LSM) introduced by  Hoff et al. (2002) using variational inference and squared Euclidian distance; the function
+<code><a href='lsjm.html'>lsjm</a></code> implements latent space joint model (LSJM) for multiplex networks introduced by
+Gollini and Murphy (2016).
+These models assume that each node of a network has a latent position
+in a latent space: the closer two nodes are in the latent space, the more likely
+they are connected.</p>
+<p>Latent variable models for binary bipartite networks: the function <code><a href='lca.html'>lca</a></code> implements the latent class analysis (LCA) to find groups in the sender nodes (with the condition of independence within the groups); the function <code><a href='lta.html'>lta</a></code> implements the latent trait analysis (LTA) to model the dependence in the receiver nodes by using a continuous latent variable; the function <code><a href='mlta.html'>mlta</a></code> implements the mixture of latent trait analyzers (MLTA) introduced by Gollini and Murphy (2014) and Gollini (in press) to identify groups assuming the existence of a latent trait describing the dependence structure between receiver nodes within groups of sender nodes and therefore capturing the heterogeneity of sender nodes' behaviour within groups. <code><a href='lta.html'>lta</a></code> and <code><a href='mlta.html'>mlta</a></code> use variational inference.</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Gollini, I., and Murphy, T. B. (2016), 'Joint Modelling of Multiple Network Views', Journal of Computational and Graphical Statistics, 25(1), 246-265 <a href='http://arxiv.org/abs/1301.3759'>http://arxiv.org/abs/1301.3759</a>.</p>
+    <p>Gollini, I. (in press) 'A mixture model approach for clustering bipartite networks', Challenges in Social Network Research Volume in the Lecture Notes in Social Networks (LNSN - Series of Springer). Preprint: <a href='https://arxiv.org/abs/1905.02659'>https://arxiv.org/abs/1905.02659</a>.</p>
+<p>Gollini, I., and Murphy, T. B. (2014), 'Mixture of Latent Trait Analyzers for Model-Based Clustering of Categorical Data', Statistics and Computing, 24(4), 569-588 <a href='http://arxiv.org/abs/1301.2167'>http://arxiv.org/abs/1301.2167</a>.</p>
+<p>Gollini, I., and Murphy, T. B. (2016), 'Joint Modelling of Multiple Network Views', Journal of Computational and Graphical Statistics, 25(1), 246-265 <a href='http://arxiv.org/abs/1301.3759'>http://arxiv.org/abs/1301.3759</a>.</p>
 <p>Hoff, P., Raftery, A., and Handcock, M. (2002), "Latent Space Approaches to Social Network Analysis", Journal of the American Statistical Association, 97, 1090--1098.</p>
     
 
@@ -140,6 +150,8 @@ Functions for binary bipartite networks will be added soon.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
+      <li><a href="#details">Details</a></li>
+
       <li><a href="#references">References</a></li>
           </ul>
 
