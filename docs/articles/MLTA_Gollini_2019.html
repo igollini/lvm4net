@@ -91,114 +91,106 @@
     
     
 <p>This code accompany the paper Gollini, I. (in press) “A mixture model approach for clustering bipartite networks”, Challenges in Social Network Research Volume in the <em>Lecture Notes in Social Networks</em> (LNSN - Series of Springer). Preprint: <a href="http://arxiv.org/abs/1905.02659">arXiv:1905.02659</a>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Random">set.seed</a></span>(<span class="dv">123</span>)</a></code></pre></div>
 <p>Load the <code>noordin</code> dataset which is available in the <code>manet</code> package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(noordin, <span class="dt">package =</span> <span class="st">"manet"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(noordin, <span class="dt">package =</span> <span class="st">"manet"</span>)</a></code></pre></div>
 <p>Load the <code>lvm4net</code> package and set the incidence matrix in the correct format, and give names to the sender nodes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lvm4net)
-X &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(noordin)
-namesX &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">'V'</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(X)))</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(lvm4net)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">X &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/matrix">as.matrix</a></span>(noordin)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">namesX &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">'V'</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(X)))</a></code></pre></div>
 <p>Heatmap of the data:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/heatmap">heatmap</a></span>(
-  X,
-  <span class="dt">Rowv =</span> <span class="ot">NA</span>,
-  <span class="dt">Colv =</span> <span class="ot">NA</span>,
-  <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.95</span>, <span class="fl">0.0</span>)),
-  <span class="dt">scale =</span> <span class="st">"none"</span>,
-  <span class="dt">margins =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">3</span>),
-  <span class="dt">xlab =</span> <span class="st">"Event"</span>,
-  <span class="dt">ylab =</span> <span class="st">"Terrorist"</span>
-  )</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/heatmap">heatmap</a></span>(</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2">  X,</a>
+<a class="sourceLine" id="cb4-3" data-line-number="3">  <span class="dt">Rowv =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4">  <span class="dt">Colv =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb4-5" data-line-number="5">  <span class="dt">col =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.95</span>, <span class="fl">0.0</span>)),</a>
+<a class="sourceLine" id="cb4-6" data-line-number="6">  <span class="dt">scale =</span> <span class="st">"none"</span>,</a>
+<a class="sourceLine" id="cb4-7" data-line-number="7">  <span class="dt">margins =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>, <span class="dv">3</span>),</a>
+<a class="sourceLine" id="cb4-8" data-line-number="8">  <span class="dt">xlab =</span> <span class="st">"Event"</span>,</a>
+<a class="sourceLine" id="cb4-9" data-line-number="9">  <span class="dt">ylab =</span> <span class="st">"Terrorist"</span></a>
+<a class="sourceLine" id="cb4-10" data-line-number="10">  )</a></code></pre></div>
 <p><img src="MLTA_Gollini_2019_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
 <p>We want to fit the model on a range of groups <code>G</code>, from 2 to 4 and the latent continuous latent variable takes value <code>D</code> from 0 to 3.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">G &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="co"># is the number of groups</span>
-D &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">3</span> <span class="co"># is the dimension of the latent variable</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">G &lt;-<span class="st"> </span><span class="dv">2</span><span class="op">:</span><span class="dv">4</span> <span class="co"># is the number of groups</span></a>
+<a class="sourceLine" id="cb5-2" data-line-number="2">D &lt;-<span class="st"> </span><span class="dv">0</span><span class="op">:</span><span class="dv">3</span> <span class="co"># is the dimension of the latent variable</span></a></code></pre></div>
 <p>Fit the <code>mlta</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.time">system.time</a></span>(
-  mod.mlta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mlta.html">mlta</a></span>(X, <span class="dt">G =</span> G, <span class="dt">D =</span> D, <span class="dt">wfix =</span> <span class="ot">FALSE</span>) <span class="co"># It takes ~ 2 minutes with 3 starts</span>
-)</code></pre></div>
-<pre><code>##    user  system elapsed 
-## 266.890   5.542 429.251</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.time">system.time</a></span>(
-  mod.mlta.wfix &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mlta.html">mlta</a></span>(X, <span class="dt">G =</span> G, <span class="dt">D =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">wfix =</span> <span class="ot">TRUE</span>) 
-  )<span class="co"># It takes ~ 2 minutes with 3 starts</span></code></pre></div>
-<pre><code>##    user  system elapsed 
-## 216.385   4.039 242.242</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.mlta<span class="op">$</span>BIC<span class="op">$</span><span class="st">`</span><span class="dt">Table of BIC Results</span><span class="st">`</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">mod.mlta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mlta.html">mlta</a></span>(X, <span class="dt">G =</span> G, <span class="dt">D =</span> D, <span class="dt">wfix =</span> <span class="ot">FALSE</span>) <span class="co"># It takes ~ 2 minutes with 3 starts</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">mod.mlta.wfix &lt;-<span class="st"> </span><span class="kw"><a href="../reference/mlta.html">mlta</a></span>(X, <span class="dt">G =</span> G, <span class="dt">D =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>, <span class="dt">wfix =</span> <span class="ot">TRUE</span>) <span class="co"># It takes ~ 2 minutes with 3 starts</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">mod.mlta<span class="op">$</span>BIC<span class="op">$</span><span class="st">`</span><span class="dt">Table of BIC Results</span><span class="st">`</span></a></code></pre></div>
 <pre><code>##              G=2      G=3      G=4
 ## dim y=0 2087.159 2187.163 2305.239
 ## dim y=1 2165.918 2412.358 2732.959
 ## dim y=2 2402.889 2885.561 3412.363
 ## dim y=3 2792.768 3409.382 4154.685</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.mlta.wfix<span class="op">$</span>BIC<span class="op">$</span><span class="st">`</span><span class="dt">Table of BIC Results</span><span class="st">`</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">mod.mlta.wfix<span class="op">$</span>BIC<span class="op">$</span><span class="st">`</span><span class="dt">Table of BIC Results</span><span class="st">`</span></a></code></pre></div>
 <pre><code>##              G=2      G=3      G=4
 ## dim y=1 2027.425 2126.788 2300.028
 ## dim y=2 2137.959 2254.079 2398.944
 ## dim y=3 2317.978 2446.674 2569.771</code></pre>
 <p>According to the BIC the best model selected is has two groups (<code>G = 2</code>) and a one dimensional continuous latent variable (<code>D = 1</code>) and common slope parameters across groups (<code>wfix = TRUE</code>).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span>mod.mlta.wfix[[<span class="dv">1</span>]]</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(res<span class="op">$</span>w), <span class="dt">xlab =</span> <span class="st">"Event"</span>, <span class="dt">ylab =</span> <span class="st">"w"</span>, <span class="dt">pch =</span> <span class="dv">19</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(<span class="dt">h =</span> <span class="dv">0</span>)</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">res &lt;-<span class="st"> </span>mod.mlta.wfix[[<span class="dv">1</span>]]</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(res<span class="op">$</span>w), <span class="dt">xlab =</span> <span class="st">"Event"</span>, <span class="dt">ylab =</span> <span class="st">"w"</span>, <span class="dt">pch =</span> <span class="dv">19</span>)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(<span class="dt">h =</span> <span class="dv">0</span>)</a></code></pre></div>
 <p><img src="MLTA_Gollini_2019_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>))
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(res<span class="op">$</span>b[<span class="dv">1</span>,]), <span class="dt">xlab =</span> <span class="st">"Event"</span>, <span class="dt">ylab =</span> <span class="st">"b"</span>, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">main =</span> <span class="st">"Group 1"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(<span class="dt">h =</span> <span class="dv">0</span>)
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(res<span class="op">$</span>b[<span class="dv">2</span>,]), <span class="dt">xlab =</span> <span class="st">"Event"</span>, <span class="dt">ylab =</span> <span class="st">"b"</span>, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">main =</span> <span class="st">"Group 2"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(<span class="dt">h =</span> <span class="dv">0</span>)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">mfrow =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(res<span class="op">$</span>b[<span class="dv">1</span>,]), <span class="dt">xlab =</span> <span class="st">"Event"</span>, <span class="dt">ylab =</span> <span class="st">"b"</span>, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">main =</span> <span class="st">"Group 1"</span>)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(<span class="dt">h =</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(res<span class="op">$</span>b[<span class="dv">2</span>,]), <span class="dt">xlab =</span> <span class="st">"Event"</span>, <span class="dt">ylab =</span> <span class="st">"b"</span>, <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">main =</span> <span class="st">"Group 2"</span>)</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(<span class="dt">h =</span> <span class="dv">0</span>)</a></code></pre></div>
 <p><img src="MLTA_Gollini_2019_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p>Plot the probability of each sender node to belong to group 1.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res<span class="op">$</span>z[,<span class="dv">1</span>], <span class="dt">pch =</span> <span class="dv">19</span>, 
-  <span class="dt">xlab =</span> <span class="st">"Sender node"</span>,
-  <span class="dt">ylab =</span> <span class="st">"Probability to belong to group 1"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(<span class="dt">h =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">"red"</span>)</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res<span class="op">$</span>z[,<span class="dv">1</span>], <span class="dt">pch =</span> <span class="dv">19</span>, </a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">  <span class="dt">xlab =</span> <span class="st">"Sender node"</span>,</a>
+<a class="sourceLine" id="cb15-3" data-line-number="3">  <span class="dt">ylab =</span> <span class="st">"Probability to belong to group 1"</span>)</a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/abline">abline</a></span>(<span class="dt">h =</span> <span class="fl">0.5</span>, <span class="dt">col =</span> <span class="st">"red"</span>)</a></code></pre></div>
 <p><img src="MLTA_Gollini_2019_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>Find and plot the probability that the median sender node in group <em>g</em> has a link with receiver node <em>r</em>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">pig0 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>( <span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">exp</a></span>(<span class="op">-</span>res<span class="op">$</span>b))
-
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/matplot">matplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(pig0), <span class="dt">type =</span> <span class="st">"l"</span>, 
-  <span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">ylab =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(pi[rg](<span class="dv">0</span>))),
-  <span class="dt">xlab =</span> <span class="st">"Receiver node (r)"</span>, <span class="dt">xaxt =</span> <span class="st">"n"</span>,
-  <span class="dt">main =</span> <span class="st">"Probability that the median sender node in group g</span><span class="ch">\n</span><span class="st"> has a link with receiver node r"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/axis">axis</a></span>(<span class="dv">1</span>, <span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(X))
-<span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/legend">legend</a></span>(<span class="st">"topright"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Group"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">sep =</span> <span class="st">" "</span>), <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">pig0 &lt;-<span class="st"> </span><span class="dv">1</span> <span class="op">/</span><span class="st"> </span>( <span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">exp</a></span>(<span class="op">-</span>res<span class="op">$</span>b))</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/matplot">matplot</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/t">t</a></span>(pig0), <span class="dt">type =</span> <span class="st">"l"</span>, </a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">  <span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="dt">ylab =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(pi[rg](<span class="dv">0</span>))),</a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">  <span class="dt">xlab =</span> <span class="st">"Receiver node (r)"</span>, <span class="dt">xaxt =</span> <span class="st">"n"</span>,</a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">  <span class="dt">main =</span> <span class="st">"Probability that the median sender node in group g</span><span class="ch">\n</span><span class="st"> has a link with receiver node r"</span>)</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/axis">axis</a></span>(<span class="dv">1</span>, <span class="dt">at =</span> <span class="dv">1</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">ncol</a></span>(X))</a>
+<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/legend">legend</a></span>(<span class="st">"topright"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste</a></span>(<span class="st">"Group"</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">sep =</span> <span class="st">" "</span>), <span class="dt">col =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dt">lty =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>)</a></code></pre></div>
 <p><img src="MLTA_Gollini_2019_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 <p>We can calculate the log-lift for the best model selected.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">loglift &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="kw"><a href="../reference/lift.html">lift</a></span>(res, <span class="dt">pdGH =</span> <span class="dv">21</span>))</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/heatmap">heatmap</a></span>(
-  loglift[,,<span class="dv">1</span>],
-  <span class="dt">Rowv =</span> <span class="ot">NA</span>,
-  <span class="dt">Colv =</span> <span class="ot">NA</span>,
-  <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl">diverge_hsv</a></span>(<span class="dv">20</span>),
-  <span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="dv">1</span>),
-  <span class="dt">revC =</span> <span class="ot">TRUE</span>,
-  <span class="dt">scale =</span> <span class="st">"none"</span>,
-  <span class="dt">xlab =</span> <span class="st">"Event"</span>,
-  <span class="dt">ylab =</span> <span class="st">"Event"</span>,
-  <span class="dt">main =</span> <span class="st">"Log-Lift for Group 1"</span>
-  )</code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">loglift &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(<span class="kw"><a href="../reference/lift.html">lift</a></span>(res, <span class="dt">pdGH =</span> <span class="dv">21</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/heatmap">heatmap</a></span>(</a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">  loglift[,,<span class="dv">1</span>],</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3">  <span class="dt">Rowv =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">  <span class="dt">Colv =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">  <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl">diverge_hsv</a></span>(<span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">  <span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">  <span class="dt">revC =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">  <span class="dt">scale =</span> <span class="st">"none"</span>,</a>
+<a class="sourceLine" id="cb18-9" data-line-number="9">  <span class="dt">xlab =</span> <span class="st">"Event"</span>,</a>
+<a class="sourceLine" id="cb18-10" data-line-number="10">  <span class="dt">ylab =</span> <span class="st">"Event"</span>,</a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">  <span class="dt">main =</span> <span class="st">"Log-Lift for Group 1"</span></a>
+<a class="sourceLine" id="cb18-12" data-line-number="12">  )</a></code></pre></div>
 <p><img src="MLTA_Gollini_2019_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/heatmap">heatmap</a></span>(
-  loglift[,,<span class="dv">2</span>],
-  <span class="dt">Rowv =</span> <span class="ot">NA</span>,
-  <span class="dt">Colv =</span> <span class="ot">NA</span>,
-  <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl">diverge_hsv</a></span>(<span class="dv">20</span>),
-  <span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="dv">1</span>),
-  <span class="dt">revC =</span> <span class="ot">TRUE</span>,
-  <span class="dt">scale =</span> <span class="st">"none"</span>,
-  <span class="dt">xlab =</span> <span class="st">"Event"</span>,
-  <span class="dt">ylab =</span> <span class="st">"Event"</span>,
-  <span class="dt">main =</span> <span class="st">"Log-Lift for Group 2"</span>
-  )</code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/heatmap">heatmap</a></span>(</a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">  loglift[,,<span class="dv">2</span>],</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3">  <span class="dt">Rowv =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb19-4" data-line-number="4">  <span class="dt">Colv =</span> <span class="ot">NA</span>,</a>
+<a class="sourceLine" id="cb19-5" data-line-number="5">  <span class="dt">col =</span> colorspace<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/colorspace/topics/rainbow_hcl">diverge_hsv</a></span>(<span class="dv">20</span>),</a>
+<a class="sourceLine" id="cb19-6" data-line-number="6">  <span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="op">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="dt">by =</span> <span class="dv">1</span>),</a>
+<a class="sourceLine" id="cb19-7" data-line-number="7">  <span class="dt">revC =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb19-8" data-line-number="8">  <span class="dt">scale =</span> <span class="st">"none"</span>,</a>
+<a class="sourceLine" id="cb19-9" data-line-number="9">  <span class="dt">xlab =</span> <span class="st">"Event"</span>,</a>
+<a class="sourceLine" id="cb19-10" data-line-number="10">  <span class="dt">ylab =</span> <span class="st">"Event"</span>,</a>
+<a class="sourceLine" id="cb19-11" data-line-number="11">  <span class="dt">main =</span> <span class="st">"Log-Lift for Group 2"</span></a>
+<a class="sourceLine" id="cb19-12" data-line-number="12">  )</a></code></pre></div>
 <p><img src="MLTA_Gollini_2019_files/figure-html/unnamed-chunk-15-2.png" width="700"></p>
 <div id="extra-code" class="section level3">
 <h3 class="hasAnchor">
 <a href="#extra-code" class="anchor"></a>Extra code:</h3>
 <p>When <code>D = 0</code> the <code>mlta</code> reduces to the latent class analysis that can be fitted by using <code>lca</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.lca &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lca.html">lca</a></span>(X, <span class="dt">G =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>)</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">mod.lca &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lca.html">lca</a></span>(X, <span class="dt">G =</span> <span class="dv">2</span><span class="op">:</span><span class="dv">4</span>)</a></code></pre></div>
 <p>When there are no groups (<code>G = 1</code>) and <code>D &gt; 0</code> the <code>mlta</code> reduces to the latent trait analysis that can be fitted by using <code>lta</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod.lta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lta.html">lta</a></span>(X, <span class="dt">D =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">mod.lta &lt;-<span class="st"> </span><span class="kw"><a href="../reference/lta.html">lta</a></span>(X, <span class="dt">D =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)</a></code></pre></div>
 </div>
   </div>
 

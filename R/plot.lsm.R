@@ -39,7 +39,7 @@ plot.lsm <- function(x, Y, drawCB = FALSE, dimZ = c(1, 2), colPl = 1,
 		stopifnot(inherits(x, 'lsm'))
 		stopifnot(is.adjacency(Y))
 		stopifnot(is.logical(drawCB) & length(drawCB) == 1)
-		stopifnot(dimZ %in% seq(1: ncol(x$lsmEZ)) && length(dimZ == 2))
+		stopifnot(all(dimZ %in% seq(1: ncol(x$lsmEZ))) && length(dimZ == 2))
 	
 	if(drawCB){ 
 		VZ <- x$lsmVZ

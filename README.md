@@ -12,7 +12,7 @@
 
 - Gollini, I. (in press) "A mixture model approach for clustering bipartite networks", Challenges in Social Network Research Volume in the *Lecture Notes in Social Networks* (LNSN - Series of Springer). Preprint: [arXiv:1905.02659](http://arxiv.org/abs/1905.02659).
 
-- Gollini, I., and Murphy, T. B. (2014), ["Mixture of Latent Trait Analyzers for Model-Based Clustering of Categorical Data"] (http://link.springer.com/article/10.1007/s11222-013-9389-1), *Statistics and Computing*, 24(4), 569-588, [arXiv:1301.2167](http://arxiv.org/abs/1301.2167).
+- Gollini, I., and Murphy, T. B. (2014), ["Mixture of Latent Trait Analyzers for Model-Based Clustering of Categorical Data"](http://link.springer.com/article/10.1007/s11222-013-9389-1), *Statistics and Computing*, 24(4), 569-588, [arXiv:1301.2167](http://arxiv.org/abs/1301.2167).
 
 - Gollini, I., and Murphy, T. B. (2016), ["Joint Modelling of Multiple Network Views"](http://www.tandfonline.com/doi/abs/10.1080/10618600.2014.978006#.VJGM9GSsW0c), *Journal of Computational and Graphical Statistics*, [arXiv:1301.3759](http://arxiv.org/abs/1301.3759).
 

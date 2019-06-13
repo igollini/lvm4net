@@ -58,17 +58,13 @@ D <- 0:3 # is the dimension of the latent variable
 Fit the `mlta`
 
 ```{r}
-system.time(
-  mod.mlta <- mlta(X, G = G, D = D, wfix = FALSE) # It takes ~ 2 minutes with 3 starts
-)
+mod.mlta <- mlta(X, G = G, D = D, wfix = FALSE) # It takes ~ 2 minutes with 3 starts
 ```
 
 
 
 ```{r}
-system.time(
-  mod.mlta.wfix <- mlta(X, G = G, D = 1:3, wfix = TRUE) 
-  )# It takes ~ 2 minutes with 3 starts
+mod.mlta.wfix <- mlta(X, G = G, D = 1:3, wfix = TRUE) # It takes ~ 2 minutes with 3 starts
 ```
 
 ```{r}
@@ -88,7 +84,6 @@ abline(h = 0)
 ```
 
 ```{r}
-
 par(mfrow = c(1, 2))
 
 plot(c(res$b[1,]), xlab = "Event", ylab = "b", pch = 19, main = "Group 1")
@@ -96,8 +91,6 @@ abline(h = 0)
 
 plot(c(res$b[2,]), xlab = "Event", ylab = "b", pch = 19, main = "Group 2")
 abline(h = 0)
-
-
 ```
 
 
