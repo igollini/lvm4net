@@ -17,3 +17,7 @@
 - Gollini, I., and Murphy, T. B. (2016), ["Joint Modelling of Multiple Network Views"](http://www.tandfonline.com/doi/abs/10.1080/10618600.2014.978006#.VJGM9GSsW0c), *Journal of Computational and Graphical Statistics*, [arXiv:1301.3759](http://arxiv.org/abs/1301.3759).
 
 - Hoff, P., Raftery, A., and Handcock, M. (2002), ["Latent Space Approaches to Social Network Analysis"](http://www.tandfonline.com/doi/abs/10.1198/016214502388618906#.VSglXRPF-e4), *Journal of the American Statistical Association*, 97, 1090--1098.
+
+### Other learning material
+
+- Material from the [Sunbelt 2019](https://www.fourwav.es/sunbelt-2019/) workshop on on *Exploring networks using latent variable models in R with `lvm4net`* is available [here](https://github.com/igollini/lvm4net-Workshop)
