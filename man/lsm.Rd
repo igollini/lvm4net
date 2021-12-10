@@ -36,6 +36,7 @@ List containing:
 \item \code{xiT} mean of the posterior distribution of \eqn{\alpha}
 \item \code{psi2T} variance of the posterior distribution of \eqn{\alpha}
 \item \code{Ell} expected log-likelihood
+\item \code{lsmEZ_start} (\code{N} x \code{D}) matrix containing the latent position starting values
 }
 }
 \description{
