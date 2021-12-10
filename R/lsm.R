@@ -21,6 +21,7 @@
 #' \item \code{xiT} mean of the posterior distribution of \eqn{\alpha}
 #' \item \code{psi2T} variance of the posterior distribution of \eqn{\alpha}
 #' \item \code{Ell} expected log-likelihood
+#' \item \code{lsmEZ_start} (\code{N} x \code{D}) matrix containing the latent position starting values
 #' }
 
 #' @seealso \code{\link{plot.lsm}}
@@ -96,6 +97,7 @@ lsm <- function(Y, D, sigma = 1, xi = 0, psi2 = 2, Niter = 100, Miniter = 10, to
 		}
 	
 	}
+	lsmEZ_start <- lsm$lsmEZ
 	
 	lsm$xiT <- glm(c(Y)~c(as.matrix(dist(lsm$lsmEZ)^2)))$coefficients[1]
 	names(lsm$xiT) <- NULL
@@ -177,10 +179,11 @@ lsm <- function(Y, D, sigma = 1, xi = 0, psi2 = 2, Niter = 100, Miniter = 10, to
 	if(ns == 1 || exll > best.exll){
 		best.lsm <- lsm
 		best.exll <- exll
+		best.lsmEZ_start <- lsmEZ_start
 	}
 	
 	}
-		robj <- list(lsmEZ = best.lsm$lsmEZ, lsmVZ = best.lsm$lsmVZ, xiT = best.lsm$xiT, psi2T = best.lsm$psi2T, Ell = best.exll)
+		robj <- list(lsmEZ = best.lsm$lsmEZ, lsmVZ = best.lsm$lsmVZ, xiT = best.lsm$xiT, psi2T = best.lsm$psi2T, Ell = best.exll, lsmEZ_start = best.lsmEZ_start)
 	
 	class(robj) <- c("lsm")
 	
